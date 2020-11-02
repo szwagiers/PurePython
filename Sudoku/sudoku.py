@@ -39,13 +39,20 @@ def placeNumber():
     # get positions from position() function
     positions = position()
     # unpack first digit as X position
-    positionX = positions[0]
+    position_col = positions[0]
     # unpack second digit as Y position
-    positionY = positions[1]
-    # check if number already in square 3x3
-    if num in b[positionX]:
+    position_row = positions[1]
+    # check if number already in chosen column
+    for c in range(0, 9):
+        if num == b[position_col][c]:
+            print('')
+            print(f'That number is already in {position_col} column.')
+            placeNumber()
+
+    # check if number already in chosen row
+    if num in b[position_row]:
         print('')
-        print(f'That number is already in {positionX} square.')
+        print(f'That number is already in {position_row} row.')
         placeNumber()
     else:
         for x in range(1, 2):
@@ -55,7 +62,7 @@ def placeNumber():
                     placeNumber()
                 # place chosen number on X and Y position on board
                 else:
-                    b[positionX][positionY] = num
+                    b[position_col][position_row] = num
 
 
 def number():
